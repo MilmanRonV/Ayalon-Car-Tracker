@@ -92,6 +92,7 @@ class CarStream:
 
 if __name__ == "__main__":
     livestream_url = "https://5e0da72d486c5.streamlock.net:8443/ayalon/Mozes_Gantry.stream/playlist.m3u8"
+    # the camera tends to move in random directions from time to time, accuracy may vary...
 
     cap = cv2.VideoCapture(livestream_url)
 
