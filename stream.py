@@ -37,13 +37,6 @@ class CarStream:
 
                     for cnt in contours:
                         x, y, w, h = cv2.boundingRect(cnt)
-                        cv2.drawContours(
-                            mask,
-                            contours,
-                            -1,
-                            color=(255, 255, 255),
-                            thickness=cv2.FILLED,
-                        )
                         cv2.circle(
                             frame, (x + int(w / 2), y + int(h / 2)), 3, (0, 0, 255), 3
                         )
@@ -64,7 +57,7 @@ class CarStream:
                     cv2.putText(
                         frame,
                         str(ot.passed_objects),
-                        (10, 20),
+                        (10, 60),
                         cv2.FONT_HERSHEY_SIMPLEX,
                         0.9,
                         (36, 255, 12),
@@ -93,10 +86,11 @@ class CarStream:
 if __name__ == "__main__":
     livestream_url = "https://5e0da72d486c5.streamlock.net:8443/ayalon/Mozes_Gantry.stream/playlist.m3u8"
     # the camera tends to move in random directions from time to time, accuracy may vary...
+    # also, the quality is abysmal, there are random time jumps, and sometime it doens't work altogether
 
     cap = cv2.VideoCapture(livestream_url)
 
-    l1 = Line((0, 550), 1)
+    l1 = Line((0, 550), 2)
     ot = ObjectTracker(l1)
 
     stream = CarStream(cap, ot)
